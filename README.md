@@ -37,11 +37,20 @@ export GITHUB_TOKEN=<your-token>
 export GITHUB_USER=<your-username>
 ```
 
+### GitHub Repository
+
+Fork the workshop repository on your personal account and clone it locally:
+
+```shell
+git clone https://github.com/${GITHUB_USER}/flux-workshop-2023.git
+cd flux-workshop-2023
+```
+
 ## Bootstrap
 
 Install Flux on the staging cluster:
 
-```sh
+```shell
 flux bootstrap github \
     --owner=${GITHUB_USER} \
     --repository=flux-workshop-2023 \
@@ -50,3 +59,8 @@ flux bootstrap github \
     --path=clusters/staging
 ```
 
+Pull the changes locally:
+
+```shell
+git pull
+```
