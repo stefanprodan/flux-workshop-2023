@@ -11,7 +11,7 @@ Any other Kubernetes setup will work as well though.
 Create a cluster called `staging` with the kind CLI:
 
 ```shell
-kind create cluster staging
+kind create cluster --name staging
 ```
 
 ### Flux CLI
@@ -36,3 +36,17 @@ Add the GitHub PAT and username to your shell environment:
 export GITHUB_TOKEN=<your-token>
 export GITHUB_USER=<your-username>
 ```
+
+## Bootstrap
+
+Install Flux on the staging cluster:
+
+```sh
+flux bootstrap github \
+    --owner=${GITHUB_USER} \
+    --repository=flux-workshop-2023 \
+    --branch=staging \
+    --personal \
+    --path=clusters/staging
+```
+
