@@ -16,4 +16,4 @@ patches:
        value: --requeue-dependency=5s
    target:
      kind: Deployment
-     name: "(kustomize-controller|helm-controller|source-controller)"
+     name: "(kustomize-controller|helm-controller)"
