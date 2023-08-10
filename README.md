@@ -48,7 +48,7 @@ cd flux-workshop-2023
 
 ## Bootstrap
 
-Install Flux on the staging cluster:
+Install the Flux controllers on the staging cluster:
 
 ```shell
 flux bootstrap github \
@@ -64,3 +64,46 @@ Pull the changes locally:
 ```shell
 git pull
 ```
+
+Inspect the Flux manifests generated in the repo:
+
+```shell
+tree ./clusters
+```
+
+## Install the Flux UI
+
+Rename the `infrastructure.yaml.x` to `infrastructure.yaml` in the `clusters/staging` directory,
+then commit the changes and push them upstream.
+
+Wait for Flux to reconcile the infra Kustomizations:
+
+```shell
+flux get kustomizations --watch
+```
+
+To access the Flux UI, first start port forwarding with:
+
+```sh
+kubectl -n flux-system port-forward svc/weave-gitops 9001:9001
+```
+
+Navigate to http://localhost:9001 and login using the username `admin` and the password `flux`.
+
+## Install the demo app
+
+Rename the `apps.yaml.x` to `apps.yaml` in the `clusters/staging` directory,
+then commit the changes and push them upstream.
+
+Wait for Flux to reconcile the apps Kustomizations:
+
+```shell
+flux get kustomizations --watch
+```
+
+## Enable continuous deployment
+
+Edit the `podinfo.yaml` file from the `apps` directory, and change the `tag: 6.4.0` to `semver: 6.4.x`.
+Commit the changes and push them upstream.
+
+Navigate to `Applications > podinfo` in the Flux UI and watch the app being upgraded to the latest version.
