@@ -54,7 +54,7 @@ Install the Flux controllers on the staging cluster:
 flux bootstrap github \
     --owner=${GITHUB_USER} \
     --repository=flux-workshop-2023 \
-    --branch=staging \
+    --branch=main \
     --personal \
     --path=clusters/staging
 ```
